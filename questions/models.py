@@ -6,7 +6,7 @@ class Question(models.Model):
     active = models.BooleanField(default=True)
     draft = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-
+    #answers = models.ManyToManyField('Answer')
     def __str__(self):
         return self.text[:10]
 

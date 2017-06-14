@@ -2,14 +2,17 @@
 
 
 {% block content %}
+{{ instance.text }}
+<form action="" method="POST">{% csrf_token %}
+    <input type="hidden" name='question_id' value="{{ instance.id }}" />
 
-<ul>
-  {% for question in queryset %}
-    <li>{{ question.text }}</li>
-    {% for answer in question.answer_set.all %}
-        <li>{{ answer.text }}</li>
-        {% endfor %}
-      </br>
-  {% endfor %}
-</ul>
+    {% for answer in instance.answer_set.all %}
+    <input type='radio' name='answer_id' value='{{ answer.id }}'/>{{ answer.text }}<br/>
+    {% endfor %}
+
+    <input type='submit' value='Save and contineue'/>
+</form>
+
+
+
 {% endblock content %}

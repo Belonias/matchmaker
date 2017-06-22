@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form action="" method="POST">{% csrf_token %}
+  {{ form.errors }}
+    <h1>{{ instance.text }}</h1>
+    <input type="hidden" name='question_id' value="{{ instance.id }}" />
+    <h3>Your answer</h3>
+    {% for answer in instance.answer_set.all %}
+    <input type='radio' name='answer_id' value='{{ answer.id }}'/>{{ answer.text }}<br/>
+    {% endfor %}
+
+    <br/>
+    Importance: {{ form.importance_level }}
+
+    <h3>Your coworker's answer</h3>
+    {% for answer in instance.answer_set.all %}
+    <input type='radio' name='coworker_answer_id' value='{{ answer.id }}'/>{{ answer.text }}<br/>
+    {% endfor %}
+
+    <h3>Co Importance Level: {{ form.coworker_importance_level }}</h3>
+
+    <input type='submit' value='Save and contineue'/>
+</form>
+
+
+
+{% endblock content %}

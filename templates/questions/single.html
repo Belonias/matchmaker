@@ -15,12 +15,12 @@
     <br/>
     Importance: {{ form.importance_level }}
 
-    <h3>Your coworker's answer</h3>
+    <h3>Your their's answer</h3>
     {% for answer in instance.answer_set.all %}
-    <input type='radio' name='coworker_answer_id' value='{{ answer.id }}'/>{{ answer.text }}<br/>
+    <input type='radio' name='their_answer_id' value='{{ answer.id }}'/>{{ answer.text }}<br/>
     {% endfor %}
 
-    <h3>Co Importance Level: {{ form.coworker_importance_level }}</h3>
+    <h3>Co Importance Level: {{ form.their_importance_level }}</h3>
 
     <input type='submit' value='Save and contineue'/>
 </form>

@@ -15,6 +15,7 @@ def single(request, id):
 			print(form.cleaned_data)
 			print(request.POST)
 
+            # classic get field values methods
 			answer_id = form.cleaned_data.get('answer_id')
 			question_id = form.cleaned_data.get('question_id') #form.cleaned_data['question_id']
 			importance = form.cleaned_data.get('importance_level')
@@ -29,7 +30,7 @@ def single(request, id):
 			new_user_answer.question = question_instance
 			new_user_answer.my_answer = Answer.objects.get(id=answer_id)
 			new_user_answer.my_answer_importance = Answer.objects.get(id=answer_id)
-			if their_answer_id == -1:
+			if their_answer_id == -1:  # don't know why
 				their_answer_instance = Answer.objects.get(id=their_answer_id)
 				new_user_answer.their_answer = Answer.objects.get(id=answer_id)
 				new_user_answer.their_answer_importance = Answer.objects.get(id=answer_id)
@@ -37,7 +38,7 @@ def single(request, id):
 				new_user_answer.their_answer_importance = 'Not Important'
 			new_user_answer.save()
 
-			next_q = Question.objects.all().order_by("?").first()
+			next_q = Question.objects.all().order_by("?").first()  # return random question each time user answer
 			return redirect("question_single", id=next_q.id)
 
 

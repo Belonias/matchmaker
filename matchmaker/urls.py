@@ -3,10 +3,12 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from questions.views import QuestionListView
 
 urlpatterns = [
     # Examples:
     url(r'^$', 'newsletter.views.home', name='home'),
+    url(r'^questions/$', QuestionListView.as_view(), name='question_list_view'),
     url(r'^question/(?P<id>\d+)$', 'questions.views.single', name='question_single'),
     url(r'^question/$', 'questions.views.home', name='question_home'),
     url(r'^contact/$', 'newsletter.views.contact', name='contact'),
